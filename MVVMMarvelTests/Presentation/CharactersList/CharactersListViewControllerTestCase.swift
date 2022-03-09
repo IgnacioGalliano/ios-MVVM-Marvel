@@ -7,7 +7,6 @@
 
 import XCTest
 @testable import MVVMMarvel
-@testable import MVVMMarvelTests
 import SnapshotTesting
 
 class CharactersListViewControllerTestCase: XCTestCase {
@@ -16,13 +15,20 @@ class CharactersListViewControllerTestCase: XCTestCase {
     var getCharactersMock: GetCharactersMock!
     var charactersListCoordinatableSpy: CharactersListCoordinatableSpy!
 
-    func testAlertLoadingViewController() {
+//    func testAlertLoadingViewController() {
+//        givenASut()
+//        whenTheSutIsLoading()
+//        assertSnapshot(matching: sut, as: .image(on: .iPhoneX))
+//    }
+
+    func testShowFailLoadViewController() {
         givenASut()
-        whenTheSutIsLoading()
+        whenTheSutIsShowingError()
         assertSnapshot(matching: sut, as: .image(on: .iPhoneX))
     }
 
     func givenASut() {
+        charactersListCoordinatableSpy = CharactersListCoordinatableSpy()
         getCharactersMock = GetCharactersMock()
         viewModelMock = CharactersListViewModel(getCharacters: getCharactersMock,
                                                 coordinator: charactersListCoordinatableSpy)
@@ -30,8 +36,15 @@ class CharactersListViewControllerTestCase: XCTestCase {
     }
 
     func whenTheSutIsLoading() {
-        _ = sut.view
         getCharactersMock.response = false
+        _ = sut.view
+        sut.viewDidLoad()
+        viewModelMock.loadCharacters()
+    }
+
+    func whenTheSutIsShowingError() {
+        getCharactersMock.error = [NSError(domain: "", code: 400, userInfo: nil)]
+        _ = sut.view
         viewModelMock.loadCharacters()
     }
 }
