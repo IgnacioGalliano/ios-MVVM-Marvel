@@ -1,0 +1,20 @@
+PODS:
+  - Alamofire (5.5.0)
+  - SnapshotTesting (1.9.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.0)
+  - SnapshotTesting (~> 1.9.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SnapshotTesting
+
+SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  SnapshotTesting: 6141c48b6aa76ead61431ca665c14ab9a066c53b
+
+PODFILE CHECKSUM: d59eb45eeab1d7b366feb1bdf446736371f056d2
+
+COCOAPODS: 1.11.2
