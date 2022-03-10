@@ -68,7 +68,7 @@ class CharacterDetailViewController: BaseViewController {
 
     private func addImagePresentationConstraints() {
         imagePresentation.addConstraints([
-            equal(\.heightAnchor, to: 400)
+            equal(\.heightAnchor, to: Constants.imagePresentationHeightAnchor)
         ])
     }
 
@@ -102,15 +102,17 @@ class CharacterDetailViewController: BaseViewController {
         guard let title = viewModel.title else { return }
         titleLabel.text = title
         titleLabel.textColor = .white
-        titleLabel.font = UIFont(name: titleLabel.font.fontName, size: 40)
+        titleLabel.font = UIFont(name: titleLabel.font.fontName,
+                                 size: Constants.titleLabelFontSize)
     }
 
     private func setupDescriptionLabel() {
         guard let description = viewModel.description else { return }
         descriptionLabel.text = description
         descriptionLabel.textColor = .white
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.font = UIFont(name: descriptionLabel.font.fontName, size: 20)
+        descriptionLabel.numberOfLines = .zero
+        descriptionLabel.font = UIFont(name: descriptionLabel.font.fontName,
+                                       size: Constants.descriptionLabelFontSize)
     }
 
     private func setupErrorSubviews() {
@@ -134,6 +136,14 @@ class CharacterDetailViewController: BaseViewController {
     private func setupErrorLabel() {
         errorLabel.textColor = .red
         errorLabel.text = "Hubo un error en la carga de datos"
+    }
+
+    struct Constants {
+        static let imagePresentationHeightAnchor: CGFloat = 400
+
+        static let titleLabelFontSize: CGFloat = 40
+
+        static let descriptionLabelFontSize: CGFloat = 20
     }
 }
 

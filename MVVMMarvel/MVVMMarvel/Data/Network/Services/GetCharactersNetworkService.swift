@@ -9,8 +9,7 @@ import Alamofire
 
 protocol GetMoviesNetworkService {
     func execute(id: String?,
-                 success: @escaping (ResponseListDTO) -> Void,
-                 failure: @escaping ([Error]) -> Void)
+                 completion: @escaping (Result<ResponseListDTO, GetCharactersError>) -> Void)
 }
 
 class DefaultGetCharactersNetworkService: GetMoviesNetworkService {
@@ -21,16 +20,15 @@ class DefaultGetCharactersNetworkService: GetMoviesNetworkService {
     }
 
     func execute(id: String?,
-                 success: @escaping (ResponseListDTO) -> Void,
-                 failure: @escaping ([Error]) -> Void) {
+                 completion: @escaping (Result<ResponseListDTO, GetCharactersError>)  -> Void) {
         let url = Constants.moviesURL(id: id)
         AF.request(url).responseDecodable(of: ResponseListDTO.self) { response in
             switch response.result {
             case .success(let result):
-                success(result)
+                completion(.success(result))
             case .failure(let error):
                 print(error)
-                failure([error])
+                completion(.failure(.generic(message: Localizable.errorLoadingData)))
             }
         }
     }

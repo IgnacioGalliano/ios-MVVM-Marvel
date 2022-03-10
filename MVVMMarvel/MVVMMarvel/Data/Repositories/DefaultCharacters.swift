@@ -9,11 +9,11 @@ import Foundation
 
 protocol CharactersRepository {
     func getCharacters(success: @escaping ([CharacterModel]) -> Void,
-                       failure: @escaping ([Error]) -> Void)
+                       failure: @escaping (GetCharactersError) -> Void)
 
     func getCharacterDetail(id: String,
                             success: @escaping (CharacterModel) -> Void,
-                            failure: @escaping ([Error]) -> Void)
+                            failure: @escaping (GetCharactersError) -> Void)
 }
 
 class DefaultCharacters: CharactersRepository {
@@ -25,7 +25,7 @@ class DefaultCharacters: CharactersRepository {
     }
 
     func getCharacters(success: @escaping ([CharacterModel]) -> Void,
-                       failure: @escaping ([Error]) -> Void) {
+                       failure: @escaping (GetCharactersError) -> Void) {
         guard character.isEmpty else {
             success(character)
             return
@@ -33,36 +33,39 @@ class DefaultCharacters: CharactersRepository {
 
         fetchMovies { [weak self] result in
             guard let self = self else { return }
-            self.character = result.data.results.compactMap({ $0.toCharacterModel() })
-            success(self.character)
-        } failure: { error in
-            failure(error)
+            switch result {
+            case .success(let responseDTO):
+                self.character = responseDTO.data.results.compactMap({ $0.toCharacterModel() })
+                success(self.character)
+            case .failure(let error):
+                failure(error)
+            }
         }
     }
 
     func getCharacterDetail(id: String,
                             success: @escaping (CharacterModel) -> Void,
-                            failure: @escaping ([Error]) -> Void) {
+                            failure: @escaping (GetCharactersError) -> Void) {
         fetchMovies(id: id) { [weak self] result in
             guard let self = self else { return }
-            self.character = result.data.results.compactMap({ $0.toCharacterModel() })
-            if let character = self.character.first {
-                success(character)
-            } else {
-                failure([NSError(domain: "Error", code: 404, userInfo: nil)])
+            switch result {
+            case .success(let responseDTO):
+                self.character = responseDTO.data.results.compactMap({ $0.toCharacterModel() })
+                if let character = self.character.first {
+                    success(character)
+                } else {
+                    failure(.foundNil)
+                }
+            case .failure(let error):
+                failure(error)
             }
-        } failure: { error in
-            failure(error)
         }
     }
 
     private func fetchMovies(id: String? = nil,
-                             success: @escaping (ResponseListDTO) -> Void,
-                             failure: @escaping ([Error]) -> Void) {
+                             completion: @escaping (Result<ResponseListDTO, GetCharactersError>)  -> Void) {
         configNetworkService.execute(id: id) { result in
-            success(result)
-        } failure: { error in
-            failure(error)
+            completion(result)
         }
     }
 }

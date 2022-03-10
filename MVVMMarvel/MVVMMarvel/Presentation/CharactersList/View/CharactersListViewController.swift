@@ -36,21 +36,21 @@ class CharactersListViewController: BaseViewController {
         viewModel.loadCharacters()
     }
 
-    func setupSubviews() {
+    private func setupSubviews() {
         addSubviews()
         setupTableView()
     }
 
-    func addSubviews() {
+    private func addSubviews() {
         view.addSubview(charactersTableView)
         setupConstraints()
     }
 
-    func setupConstraints() {
+    private func setupConstraints() {
         addTableViewConstraints()
     }
 
-    func addTableViewConstraints() {
+    private func addTableViewConstraints() {
         charactersTableView.addConstraints([
             equal(view, \.safeAreaLayoutGuide.leadingAnchor),
             equal(view, \.safeAreaLayoutGuide.trailingAnchor),
@@ -59,7 +59,7 @@ class CharactersListViewController: BaseViewController {
         ])
     }
 
-    func setupTableView() {
+    private func setupTableView() {
         charactersTableView.dataSource = self
         charactersTableView.delegate = self
         charactersTableView.allowsSelection = true
@@ -67,27 +67,27 @@ class CharactersListViewController: BaseViewController {
         charactersTableView.register(CharactersTableViewCell.self, forCellReuseIdentifier: CharactersTableViewCell.nibName)
     }
 
-    func setupErrorSubviews() {
+    private func setupErrorSubviews() {
         view.backgroundColor = .white
         addErrorSubviews()
         setupErrorLabel()
     }
 
-    func addErrorSubviews() {
+    private func addErrorSubviews() {
         view.addSubview(errorLabel)
         setupErrorConstraints()
     }
 
-    func setupErrorConstraints() {
+    private func setupErrorConstraints() {
         errorLabel.addConstraints([
             equal(view, \.centerXAnchor),
             equal(view, \.centerYAnchor)
         ])
     }
 
-    func setupErrorLabel() {
+    private func setupErrorLabel() {
         errorLabel.textColor = .red
-        errorLabel.text = "Hubo un error en la carga de datos"
+        errorLabel.text = Localizable.errorLoadingData
     }
 }
 

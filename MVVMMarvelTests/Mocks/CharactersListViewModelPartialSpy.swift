@@ -1,14 +1,14 @@
 //
-//  CharactersListViewModelablePartialSpy.swift
+//  CharactersListViewModelPartialSpy.swift
 //  MVVMMarvelTests
 //
-//  Created by Nacho on 08/03/2022.
+//  Created by Nacho on 09/03/2022.
 //
 
 import Foundation
 @testable import MVVMMarvel
 
-class CharactersListViewModelablePartialSpy: CharactersListViewModelable {
+class CharactersListViewModelPartialSpy: CharactersListViewModelable {
     var invokedGetQuantityOfCharactersGetter = false
     var invokedGetQuantityOfCharactersGetterCount = 0
     var stubbedGetQuantityOfCharacters: Int! = 0

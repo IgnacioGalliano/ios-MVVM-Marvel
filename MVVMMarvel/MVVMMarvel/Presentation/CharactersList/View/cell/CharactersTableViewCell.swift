@@ -35,27 +35,27 @@ class CharactersTableViewCell: UITableViewCell {
 
     private func addCarViewConstraints() {
         cardView.addConstraints([
-            equal(contentView, \.topAnchor, constant: 10),
-            equal(contentView, \.bottomAnchor, constant: -10),
-            equal(contentView, \.leadingAnchor, constant: 10),
-            equal(contentView, \.trailingAnchor, constant: -10),
-            equal(\.heightAnchor, to: 100)
+            equal(contentView, \.topAnchor, constant: Constants.cardViewTopAnchor),
+            equal(contentView, \.bottomAnchor, constant: Constants.cardViewBottomAnchor),
+            equal(contentView, \.leadingAnchor, constant: Constants.cardViewLeadingAnchor),
+            equal(contentView, \.trailingAnchor, constant: Constants.cardViewTrailingAnchor),
+            equal(\.heightAnchor, to: Constants.cardViewHeightAnchor)
         ])
     }
 
     private func addCharacterImageViewConstraints() {
         characterImageView.addConstraints([
             equal(cardView, \.centerYAnchor),
-            equal(cardView, \.leadingAnchor, \.leadingAnchor, constant: 10),
-            equal(\.heightAnchor, to: 70),
-            equal(\.widthAnchor, to: 70)
+            equal(cardView, \.leadingAnchor, \.leadingAnchor, constant: Constants.characterImageViewLeadingAnchor),
+            equal(\.heightAnchor, to: Constants.characterImageViewHeightAnchor),
+            equal(\.widthAnchor, to: Constants.characterImageViewWidthAnchor)
         ])
     }
 
     private func addTitleLabelConstraints() {
         titleLabel.addConstraints([
             equal(characterImageView, \.topAnchor),
-            equal(characterImageView, \.leadingAnchor, \.trailingAnchor, constant: 10),
+            equal(characterImageView, \.leadingAnchor, \.trailingAnchor, constant: Constants.titleLabelLeadingAnchor),
             equal(cardView, \.trailingAnchor, \.trailingAnchor, constant: .zero)
         ])
     }
@@ -68,14 +68,15 @@ class CharactersTableViewCell: UITableViewCell {
 
     private func addCardViewShadow() {
         cardView.layer.shadowColor = UIColor.black.cgColor
-        cardView.layer.shadowOffset = CGSize(width: 0.0, height: 4)
-        cardView.layer.shadowRadius = 8
-        cardView.layer.shadowOpacity = 0.5
+        cardView.layer.shadowOffset = CGSize(width: Constants.shadowWidth,
+                                             height: Constants.shadowHeight)
+        cardView.layer.shadowRadius = Constants.commonCornerRadius
+        cardView.layer.shadowOpacity = Constants.shadowOpacity
     }
 
     private func addCardViewCornerRadius() {
         cardView.layer.masksToBounds = false
-        cardView.layer.cornerRadius = 4.0
+        cardView.layer.cornerRadius = Constants.commonCornerRadius
     }
 
     func setupCharacterImageView(character: CharacterModel) {
@@ -86,10 +87,30 @@ class CharactersTableViewCell: UITableViewCell {
         characterImageView.setImageByURL(imageURL)
 
         characterImageView.layer.masksToBounds = true
-        characterImageView.layer.cornerRadius = 4.0
+        characterImageView.layer.cornerRadius = Constants.commonCornerRadius
     }
 
     func setupTitleLabel(character: CharacterModel) {
         titleLabel.text = character.name
+    }
+
+    struct Constants {
+        static let cardViewTopAnchor: CGFloat = 10
+        static let cardViewBottomAnchor: CGFloat = -10
+        static let cardViewTrailingAnchor: CGFloat = -10
+        static let cardViewLeadingAnchor: CGFloat = 10
+        static let cardViewHeightAnchor: CGFloat = 100
+
+        static let characterImageViewLeadingAnchor: CGFloat = 10
+        static let characterImageViewHeightAnchor: CGFloat = 70
+        static let characterImageViewWidthAnchor: CGFloat = 70
+
+        static let titleLabelLeadingAnchor: CGFloat = 10
+
+        static let commonCornerRadius: CGFloat = 4
+
+        static let shadowOpacity: Float = 0.5
+        static let shadowHeight: CGFloat = 4
+        static let shadowWidth: CGFloat = 0
     }
 }

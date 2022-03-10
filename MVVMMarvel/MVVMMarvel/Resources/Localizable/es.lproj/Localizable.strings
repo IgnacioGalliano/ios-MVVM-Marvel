@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  MVVMMarvel
+
+  Created by Nacho on 09/03/2022.
+  
+*/
+
+"ErrorLoadingData" = "Hubo un error en la carga de datos";

@@ -9,7 +9,7 @@ import Foundation
 
 protocol GetCharacters {
     func execute(success: @escaping ([CharacterModel]) -> Void,
-                 failure: @escaping ([Error]) -> Void)
+                 failure: @escaping (GetCharactersError) -> Void)
 }
 
 struct DefaultGetCharacters: GetCharacters {
@@ -20,7 +20,7 @@ struct DefaultGetCharacters: GetCharacters {
     }
 
     func execute(success: @escaping ([CharacterModel]) -> Void,
-                 failure: @escaping ([Error]) -> Void) {
+                 failure: @escaping (GetCharactersError) -> Void) {
         repository.getCharacters { character in
             success(character)
         } failure: { error in
