@@ -9,4 +9,5 @@ import Foundation
 
 struct Localizable {
     static let errorLoadingData = NSLocalizedString("ErrorLoadingData", comment: "Error loading data")
+    static let placeholderText = NSLocalizedString("EmptyList", comment: "Empty List")
 }

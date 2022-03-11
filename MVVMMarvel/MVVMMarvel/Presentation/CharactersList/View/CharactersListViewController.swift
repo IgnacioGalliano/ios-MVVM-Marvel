@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CharactersListView: AnyObject {
-    func showError()
+    func showError(message: String)
     func reloadData()
     func showLoanding()
     func dismissLoading()
@@ -67,10 +67,10 @@ class CharactersListViewController: BaseViewController {
         charactersTableView.register(CharactersTableViewCell.self, forCellReuseIdentifier: CharactersTableViewCell.nibName)
     }
 
-    private func setupErrorSubviews() {
+    private func setupErrorSubviews(message: String) {
         view.backgroundColor = .white
         addErrorSubviews()
-        setupErrorLabel()
+        setupErrorLabel(message: message)
     }
 
     private func addErrorSubviews() {
@@ -85,9 +85,9 @@ class CharactersListViewController: BaseViewController {
         ])
     }
 
-    private func setupErrorLabel() {
+    private func setupErrorLabel(message: String) {
         errorLabel.textColor = .red
-        errorLabel.text = Localizable.errorLoadingData
+        errorLabel.text = message
     }
 }
 
@@ -105,10 +105,10 @@ extension CharactersListViewController: CharactersListView {
         }
     }
 
-    func showError() {
+    func showError(message: String) {
         Thread.ensureMainThread {
             self.charactersTableView.removeFromSuperview()
-            self.setupErrorSubviews()
+            self.setupErrorSubviews(message: message)
         }
     }
 }

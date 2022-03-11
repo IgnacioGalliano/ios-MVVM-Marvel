@@ -11,10 +11,14 @@ import UIKit
 class CharactersListViewSpy: CharactersListView {
     var invokedShowError = false
     var invokedShowErrorCount = 0
+    var invokedShowErrorParameters: (message: String, Void)?
+    var invokedShowErrorParametersList = [(message: String, Void)]()
 
-    func showError() {
+    func showError(message: String) {
         invokedShowError = true
         invokedShowErrorCount += 1
+        invokedShowErrorParameters = (message, ())
+        invokedShowErrorParametersList.append((message, ()))
     }
 
     var invokedReloadData = false

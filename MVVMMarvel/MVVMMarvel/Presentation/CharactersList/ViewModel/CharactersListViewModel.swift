@@ -37,11 +37,15 @@ class CharactersListViewModel: CharactersListViewModelable {
         getCharacters.execute { [weak self] characterList in
             guard let self = self else { return }
             self.characterList = characterList
-            self.view?.reloadData()
-            self.view?.dismissLoading()
+            if characterList.isEmpty {
+                self.view?.showError(message: Localizable.placeholderText)
+            } else {
+                self.view?.reloadData()
+                self.view?.dismissLoading()
+            }
         } failure: { error in
             self.view?.dismissLoading()
-            self.view?.showError()
+            self.view?.showError(message: Localizable.errorLoadingData)
         }
     }
 

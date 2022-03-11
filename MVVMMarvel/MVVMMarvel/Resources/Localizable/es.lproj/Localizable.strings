@@ -7,3 +7,4 @@
 */
 
 "ErrorLoadingData" = "Hubo un error en la carga de datos";
+"EmptyList" = "No hay personajes";
