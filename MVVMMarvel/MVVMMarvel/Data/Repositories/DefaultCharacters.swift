@@ -17,10 +17,10 @@ protocol CharactersRepository {
 }
 
 class DefaultCharacters: CharactersRepository {
-    private let configNetworkService: GetMoviesNetworkService
+    private let configNetworkService: GetCharactersNetworkService
     private var character: [CharacterModel] = []
 
-    init(configNetworkService: GetMoviesNetworkService) {
+    init(configNetworkService: GetCharactersNetworkService) {
         self.configNetworkService = configNetworkService
     }
 
@@ -31,7 +31,7 @@ class DefaultCharacters: CharactersRepository {
             return
         }
 
-        fetchMovies { [weak self] result in
+        fetchCharacters { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let responseDTO):
@@ -46,7 +46,7 @@ class DefaultCharacters: CharactersRepository {
     func getCharacterDetail(id: String,
                             success: @escaping (CharacterModel) -> Void,
                             failure: @escaping (GetCharactersError) -> Void) {
-        fetchMovies(id: id) { [weak self] result in
+        fetchCharacters(id: id) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let responseDTO):
@@ -62,8 +62,8 @@ class DefaultCharacters: CharactersRepository {
         }
     }
 
-    private func fetchMovies(id: String? = nil,
-                             completion: @escaping (Result<ResponseListDTO, GetCharactersError>)  -> Void) {
+    private func fetchCharacters(id: String? = nil,
+                                 completion: @escaping (Result<ResponseListDTO, GetCharactersError>)  -> Void) {
         configNetworkService.execute(id: id) { result in
             completion(result)
         }

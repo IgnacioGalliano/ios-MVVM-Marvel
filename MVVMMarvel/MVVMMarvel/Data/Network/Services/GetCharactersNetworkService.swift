@@ -7,22 +7,17 @@
 
 import Alamofire
 
-protocol GetMoviesNetworkService {
-    func execute(id: String?,
-                 completion: @escaping (Result<ResponseListDTO, GetCharactersError>) -> Void)
+protocol GetCharactersNetworkService {
+    static func execute(id: String?,
+                        completion: @escaping (Result<ResponseListDTO, GetCharactersError>) -> Void)
 }
 
-class DefaultGetCharactersNetworkService: GetMoviesNetworkService {
-//    private let netwotkService: GetMoviesNetworkService
-
-    init() {
-//        self.netwotkService = networkService
-    }
-
-    func execute(id: String?,
-                 completion: @escaping (Result<ResponseListDTO, GetCharactersError>)  -> Void) {
-        let url = Constants.moviesURL(id: id)
-        AF.request(url).responseDecodable(of: ResponseListDTO.self) { response in
+class DefaultGetCharactersNetworkService: GetCharactersNetworkService {
+    static func execute(id: String?,
+                        completion: @escaping (Result<ResponseListDTO, GetCharactersError>)  -> Void) {
+        let url = CharactersEndpoint.buildURL(id: id)
+        let parameters = CharactersEndpoint.parameters
+        AF.request(url, parameters: parameters).responseDecodable(of: ResponseListDTO.self) { response in
             switch response.result {
             case .success(let result):
                 completion(.success(result))
@@ -30,19 +25,6 @@ class DefaultGetCharactersNetworkService: GetMoviesNetworkService {
                 print(error)
                 completion(.failure(.generic(message: Localizable.errorLoadingData)))
             }
-        }
-    }
-
-    struct Constants {
-        private static let baseURL = "http://gateway.marvel.com"
-        private static let v1 = "/v1"
-        private static let moviesPath = "/public/characters"
-        private static let timeStamp = "?ts=1"
-        private static let apiKey = "&apikey=a0994bdcfbe469094edceacfd33177f2"
-        private static let hash = "&hash=6c715e487f563c24a29c71e9045b05cd"
-        static func moviesURL(id: String? = nil) -> String {
-            let characterId = id != nil ? ("/" + id!) : ""
-            return baseURL + v1 + moviesPath + characterId + timeStamp + apiKey + hash
         }
     }
 }

@@ -82,6 +82,7 @@
 		66DABD9A27D998CA00781538 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DABD9927D998CA00781538 /* Localizable.swift */; };
 		66DABD9B27DAC29D00781538 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DABD9927D998CA00781538 /* Localizable.swift */; };
 		66DABD9C27DAC29D00781538 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DABD9927D998CA00781538 /* Localizable.swift */; };
+		66DABDA127DAE2CD00781538 /* CharactersEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DABDA027DAE2CD00781538 /* CharactersEndpoint.swift */; };
 		66FA97D627D8CA5E00367C98 /* CharactersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661641D627D4F98300A32E1D /* CharactersListViewController.swift */; };
 		66FA97D727D8CA6200367C98 /* CharactersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661641E127D5235600A32E1D /* CharactersTableViewCell.swift */; };
 		66FA97D827D8CA6600367C98 /* CharactersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661641D427D4F93E00A32E1D /* CharactersListViewModel.swift */; };
@@ -172,6 +173,7 @@
 		66DABD9727D9978000781538 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		66DABD9827D9978000781538 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		66DABD9927D998CA00781538 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		66DABDA027DAE2CD00781538 /* CharactersEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersEndpoint.swift; sourceTree = "<group>"; };
 		66FA97EE27D8CB6100367C98 /* CharactersListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListBuilder.swift; sourceTree = "<group>"; };
 		73EB3197EB1E5F366F612E1C /* Pods-MVVMMarvel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMMarvel.debug.xcconfig"; path = "Target Support Files/Pods-MVVMMarvel/Pods-MVVMMarvel.debug.xcconfig"; sourceTree = "<group>"; };
 		A4C8112A563F4DA774A91338 /* Pods-MVVMMarvel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMMarvel.release.xcconfig"; path = "Target Support Files/Pods-MVVMMarvel/Pods-MVVMMarvel.release.xcconfig"; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 		661641E527D5407400A32E1D /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				66DABDA227DAE2EA00781538 /* Endpoints */,
 				661641E827D5418000A32E1D /* Services */,
 			);
 			path = Network;
@@ -488,6 +491,14 @@
 				66DABD9627D9974200781538 /* Localizable.strings */,
 			);
 			path = Localizable;
+			sourceTree = "<group>";
+		};
+		66DABDA227DAE2EA00781538 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				66DABDA027DAE2CD00781538 /* CharactersEndpoint.swift */,
+			);
+			path = Endpoints;
 			sourceTree = "<group>";
 		};
 		975F4033581FD29792D5AFCA /* Frameworks */ = {
@@ -777,6 +788,7 @@
 				6616420B27D5933100A32E1D /* CharacterDetailViewController.swift in Sources */,
 				661641F427D547C700A32E1D /* CharacterModel.swift in Sources */,
 				661641F927D54E8A00A32E1D /* ActionProvider.swift in Sources */,
+				66DABDA127DAE2CD00781538 /* CharactersEndpoint.swift in Sources */,
 				661641E227D5235600A32E1D /* CharactersTableViewCell.swift in Sources */,
 				661641EF27D541FC00A32E1D /* GetCharactersNetworkService.swift in Sources */,
 				661641F627D548A400A32E1D /* DataProvider.swift in Sources */,
