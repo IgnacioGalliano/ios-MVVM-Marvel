@@ -37,6 +37,8 @@
 		6616420F27D59A1100A32E1D /* CharactersListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6616420E27D59A1100A32E1D /* CharactersListCoordinator.swift */; };
 		6616421327D6BEFC00A32E1D /* GetCharacterDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6616421227D6BEFC00A32E1D /* GetCharacterDetail.swift */; };
 		6616421527D6C63100A32E1D /* ThumbnailDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6616421427D6C63100A32E1D /* ThumbnailDTO.swift */; };
+		6634F8F227E17D7900F5A53A /* CharactersEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DABDA027DAE2CD00781538 /* CharactersEndpoint.swift */; };
+		6634F8F327E17D7900F5A53A /* CharactersEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DABDA027DAE2CD00781538 /* CharactersEndpoint.swift */; };
 		66917CAE27D8CCA700635337 /* CharacterDetailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6616420827D58C6A00A32E1D /* CharacterDetailBuilder.swift */; };
 		66917CAF27D8CCB500635337 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6616420C27D5933B00A32E1D /* CharacterDetailViewModel.swift */; };
 		66917CB027D8CCBE00635337 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6616420A27D5933100A32E1D /* CharacterDetailViewController.swift */; };
@@ -825,6 +827,7 @@
 				66FA97EA27D8CAD500367C98 /* NSObject+ClassName.swift in Sources */,
 				66FA97D727D8CA6200367C98 /* CharactersTableViewCell.swift in Sources */,
 				66DABD8427D9732900781538 /* CharactersListViewModelTestCase.swift in Sources */,
+				6634F8F327E17D7900F5A53A /* CharactersEndpoint.swift in Sources */,
 				66DABD9B27DAC29D00781538 /* Localizable.swift in Sources */,
 				66DABD7C27D971BE00781538 /* CharactersListViewModelPartialSpy.swift in Sources */,
 				66FA97E427D8CAC100367C98 /* GetCharactersNetworkService.swift in Sources */,
@@ -866,6 +869,7 @@
 				66DABD7D27D9724B00781538 /* CharactersListViewModelPartialSpy.swift in Sources */,
 				66DABD6527D8D20E00781538 /* CharactersTableViewCell.swift in Sources */,
 				66DABD9C27DAC29D00781538 /* Localizable.swift in Sources */,
+				6634F8F227E17D7900F5A53A /* CharactersEndpoint.swift in Sources */,
 				66DABD6027D8D1FF00781538 /* CharacterModel.swift in Sources */,
 				66DABD6127D8D20200781538 /* Thumbnail.swift in Sources */,
 				66DABD7227D8D22F00781538 /* DefaultCharacters.swift in Sources */,
@@ -1024,6 +1028,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
