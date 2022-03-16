@@ -8,13 +8,13 @@
 import Alamofire
 
 protocol GetCharactersNetworkService {
-    static func execute(id: String?,
-                        completion: @escaping (Result<ResponseListDTO, GetCharactersError>) -> Void)
+    func execute(id: String?,
+                 completion: @escaping (Result<ResponseListDTO, GetCharactersError>) -> Void)
 }
 
 class DefaultGetCharactersNetworkService: GetCharactersNetworkService {
-    static func execute(id: String?,
-                        completion: @escaping (Result<ResponseListDTO, GetCharactersError>)  -> Void) {
+    func execute(id: String?,
+                 completion: @escaping (Result<ResponseListDTO, GetCharactersError>)  -> Void) {
         let url = CharactersEndpoint.buildURL(id: id)
         let parameters = CharactersEndpoint.parameters
         AF.request(url, parameters: parameters).responseDecodable(of: ResponseListDTO.self) { response in
