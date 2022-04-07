@@ -13,18 +13,26 @@ protocol GetCharactersNetworkService {
 }
 
 class DefaultGetCharactersNetworkService: GetCharactersNetworkService {
+    private let alamofireService: AlamoFireWrapperProtocol
+
+    init(alamofireService: AlamoFireWrapperProtocol = AlamoFireWrapper()) {
+        self.alamofireService = alamofireService
+    }
+
     func execute(id: String?,
                  completion: @escaping (Result<ResponseListDTO, GetCharactersError>)  -> Void) {
         let url = CharactersEndpoint.buildURL(id: id)
         let parameters = CharactersEndpoint.parameters
-        AF.request(url, parameters: parameters).responseDecodable(of: ResponseListDTO.self) { response in
-            switch response.result {
-            case .success(let result):
-                completion(.success(result))
-            case .failure(let error):
-                print(error)
-                completion(.failure(.generic(message: Localizable.errorLoadingData)))
-            }
+        alamofireService.request(url: url,
+                                 of: ResponseListDTO.self,
+                                 parameters: parameters) { response in
+                switch response.result {
+                case .success(let result):
+                    completion(.success(result))
+                case .failure(let error):
+                    print(error)
+                    completion(.failure(.generic(message: Localizable.errorLoadingData)))
+                }
         }
     }
 }
