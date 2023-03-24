@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  MVVMMarvel
+
+  Created by Nacho on 09/03/2022.
+  
+*/
+
+"ErrorLoadingData" = "Error loading data";
+"EmptyList" = "There are no characters";
+
